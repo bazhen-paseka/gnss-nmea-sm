@@ -17,12 +17,19 @@
 *								INCLUDE FILES
 **************************************************************************
 */
-
+	#include "main.h"
 /*
 **************************************************************************
 *								    DEFINES
 **************************************************************************
 */
+
+	typedef struct {
+		uint8_t *			data		;
+		uint32_t 			size		;
+		DMA_HandleTypeDef *	hdma		;
+		uint8_t const *		tail_ptr	;
+	} RingBuffer_DMA;
 
 /*
 **************************************************************************
@@ -47,5 +54,11 @@
 *                              FUNCTION PROTOTYPES
 **************************************************************************
 */
+	void		RingBuffer_DMA_Init		(RingBuffer_DMA * buffer, DMA_HandleTypeDef * hdma, uint8_t * data, uint32_t size);
+	uint8_t 	RingBuffer_DMA_GetByte	(RingBuffer_DMA * buffer);
+	uint32_t	RingBuffer_DMA_Count	(RingBuffer_DMA * buffer);
+
+	void NMEA_Parse(uint8_t *buf, uint8_t len) ;
+	uint32_t NMEA_atoi(char *p) ;
 
 #endif /* _H_ */
